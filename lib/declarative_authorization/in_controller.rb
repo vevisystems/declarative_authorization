@@ -599,6 +599,7 @@ module Authorization
       def filter_access_permissions # :nodoc:
         unless filter_access_permissions?
           ancestors[1..-1].reverse.each do |mod|
+            next if mod == self
             mod.filter_access_permissions if mod.respond_to?(:filter_access_permissions, true)
           end
         end
